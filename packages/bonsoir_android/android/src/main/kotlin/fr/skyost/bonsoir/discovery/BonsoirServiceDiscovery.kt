@@ -106,6 +106,7 @@ class BonsoirServiceDiscovery(
     }
 
     override fun onServiceFound(service: NsdServiceInfo) {
+        printCurrentThreadName("onServiceFound")
         var bonsoirService = findService(service)
         if (bonsoirService != null) {
             return
@@ -117,6 +118,7 @@ class BonsoirServiceDiscovery(
     }
 
     override fun onServiceLost(service: NsdServiceInfo) {
+        printCurrentThreadName("onServiceLost")
         val bonsoirService = findService(service)
         if (bonsoirService != null) {
             services.remove(bonsoirService)
@@ -125,6 +127,7 @@ class BonsoirServiceDiscovery(
     }
 
     override fun onDiscoveryStopped(serviceType: String) {
+        printCurrentThreadName("onDiscoveryStopped")
         val wasActive = isActive
         makeUnactive()
         onSuccess(Generated.discoveryStopped, parameters = listOf(serviceType))
@@ -179,6 +182,7 @@ class BonsoirServiceDiscovery(
      * Resolves the given service.
      */
     fun resolveService(name: String, type: String) {
+        printCurrentThreadName("resolveService")
         val bonsoirService = findService(name, type)
         if (bonsoirService == null) {
             onError(logMessages[Generated.discoveryUndiscoveredServiceResolveFailed]!!, listOf(name, type))
@@ -240,6 +244,7 @@ class BonsoirServiceDiscovery(
     }
 
     override fun dispose(notify: Boolean) {
+        printCurrentThreadName("dispose")
         val iterator = resolveQueue.iterator()
         while (iterator.hasNext()) {
             if (iterator.next().second.discoveryId == id) {
@@ -251,6 +256,11 @@ class BonsoirServiceDiscovery(
         }
         services.clear()
         super.dispose(notify)
+    }
+
+    fun printCurrentThreadName(tag: String) {
+        val threadName = Thread.currentThread().name
+        println("$tag 当前线程名称: $threadName")
     }
 }
 

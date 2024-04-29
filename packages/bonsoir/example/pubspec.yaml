@@ -11,6 +11,9 @@ dependencies:
   bonsoir:
     path:
       ../
+  bonsoir_darwin:
+    path:
+      ../../bonsoir_darwin
   flutter_riverpod: ^2.4.6
   device_info_plus: ^9.1.0
   uuid: ^4.2.1

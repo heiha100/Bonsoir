@@ -35,13 +35,13 @@ class DefaultAppService {
     String os;
     if (Platform.isAndroid) {
       name = (await deviceInfo.androidInfo).model;
-      os = 'Android';
+      os = 'hello的macbook';
     } else if (Platform.isIOS) {
       name = (await deviceInfo.iosInfo).localizedModel;
       os = 'iOS';
     } else if (Platform.isMacOS) {
       name = (await deviceInfo.macOsInfo).computerName;
-      os = 'macOS';
+      os = 'hello的macbook';
     } else if (Platform.isWindows) {
       name = (await deviceInfo.windowsInfo).computerName;
       os = 'Windows';

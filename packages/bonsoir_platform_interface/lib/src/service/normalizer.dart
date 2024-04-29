@@ -106,6 +106,7 @@ class BonsoirServiceNormalizer {
       String value = entry.value;
       while (utf8.encode('$key=$value').length > 255) {
         value = value.substring(0, value.length - 1);
+        print('===txt value: $value===');
       }
 
       // The key MUST be at least one character.
