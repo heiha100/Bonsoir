@@ -80,7 +80,10 @@ namespace bonsoir_windows {
     if (!(broadcast->isRunning())) {
       return;
     }
-//    std::string name = std::get<0>(parseBonjourFqdn(toUtf8(instance->pszInstanceName)));
+    if (instance == nullptr || instance->pszInstanceName == nullptr) {
+      return;
+    }
+    std::string name = std::get<0>(parseBonjourFqdn(toUtf8(instance->pszInstanceName)));
     std::string name = "";
     if (name == "") {
       return;
