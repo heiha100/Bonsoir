@@ -84,7 +84,6 @@ namespace bonsoir_windows {
       return;
     }
     std::string name = std::get<0>(parseBonjourFqdn(toUtf8(instance->pszInstanceName)));
-    std::string name = "";
     if (name == "") {
       return;
     }
